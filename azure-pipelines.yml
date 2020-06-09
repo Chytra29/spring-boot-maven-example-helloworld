@@ -23,7 +23,7 @@ steps:
   displayName: 'Copying the artifacts to staging directory'
   inputs:
     Sourcefolder: '$(System.DefaultWorkingDirectory)'
-    Contents: '**/target/*.(war)'
+    Contents: '**/target/*.?(war|jar)'
     TargetFolder: $(Build.ArtifactStagingDirectory)
 - upload: $(Build.ArtifactStagingDirectory)
   artifact: drop
