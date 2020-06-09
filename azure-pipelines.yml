@@ -18,3 +18,13 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     goals: 'package'
+
+- task: CopyFiles@1
+  displayName: 'Copying the artifacts to staging directory'
+  inputs:
+    Sourcefolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/target/*.(war)'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+- upload: $(Build.ArtifactStagingDirectory)
+  artifact: drop
+  
